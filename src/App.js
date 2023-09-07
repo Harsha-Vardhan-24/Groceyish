@@ -11,7 +11,12 @@ import Products from "./pages/Products";
 import Userpage from "./pages/Userpage";
 
 export default function App() {
-  const [loginState, setLoginState] = useState(false);
+  const userData = localStorage.getItem("userDetails");
+  const [loginState, setLoginState] = useState(userData ? true : false);
+
+  function updateLoginState() {
+    setLoginState(true);
+  }
 
   return (
     <main>
@@ -23,7 +28,10 @@ export default function App() {
               <Route path="product" element={<ProductPage />} />
               <Route path="products" element={<Products />} />
             </Route>
-            <Route path="login" element={<LoginPage />} />
+            <Route
+              path="login"
+              element={<LoginPage updateLoginState={updateLoginState} />}
+            />
             <Route path="user" element={<Userpage />} />
           </Routes>
         </BrowserRouter>

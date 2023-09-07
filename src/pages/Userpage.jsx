@@ -2,12 +2,15 @@ import React from "react";
 import staticImg from "../images/static/tomato.png";
 
 export default function Userpage() {
+  const userData = localStorage.getItem("userDetails");
+  const username = JSON.parse(userData);
+
   return (
     <>
       <section className="user-area">
         <div>
           <h1>
-            Welcome back, <span className="account-username">Surya Teja</span>
+            Welcome back, <span className="account-username">{username}</span>
           </h1>
         </div>
         <div>

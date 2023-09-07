@@ -11,6 +11,10 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Header({ loginState }) {
   const navigate = useNavigate();
 
+  // Here we are getting the username.
+  const userData = localStorage.getItem("userDetails");
+  const username = JSON.parse(userData);
+
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
       right: -3,
@@ -80,14 +84,17 @@ export default function Header({ loginState }) {
             Login
           </button>
         ) : (
-          <Avatar
-            // alt="Surya Teja" -> This needs to enable on user login.
-            style={{
-              backgroundColor: "#3bb77e",
-              fontWeight: "500",
-              fontSize: "1.4em",
-            }}
-          />
+          <Link to="/user" style={{ textDecoration: "none" }}>
+            <Avatar
+              style={{
+                backgroundColor: "#3bb77e",
+                fontWeight: "500",
+                fontSize: "1.4em",
+              }}
+            >
+              {username.charAt(0)}
+            </Avatar>
+          </Link>
         )}
       </div>
     </header>

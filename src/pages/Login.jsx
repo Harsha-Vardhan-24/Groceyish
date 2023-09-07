@@ -5,9 +5,11 @@ import logo from "../images/logo.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
-export default function LoginPage() {
+export default function LoginPage({ updateLoginState }) {
   const [userLogin, userSignUp] = useState(false);
+
   const navigate = useNavigate();
+
   return (
     <section className="login-area">
       <Formik
@@ -23,7 +25,7 @@ export default function LoginPage() {
               body: JSON.stringify(values),
             });
             const response = await apiCall.json();
-            console.log(response.message);
+            console.log(response.username, response.message);
             {
               if (response.message === "User not found") {
                 userSignUp(true);
@@ -62,7 +64,12 @@ export default function LoginPage() {
                   progress: undefined,
                   theme: "light",
                 });
-                navigate("/user");
+                localStorage.setItem(
+                  "userDetails",
+                  JSON.stringify(response.username)
+                );
+                updateLoginState();
+                navigate("/");
               }
             }
           } catch (error) {
