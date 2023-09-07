@@ -9,7 +9,9 @@ import SettingsBackupRestoreIcon from "@mui/icons-material/SettingsBackupRestore
 import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 
-export default function Homepage() {
+export default function Homepage(props) {
+
+
   const settings = {
     dots: true,
     infinite: true,

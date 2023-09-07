@@ -1,4 +1,5 @@
 import "./styles.css";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import customStyles from "./customStyles";
 import { ThemeProvider } from "@mui/material/styles";
@@ -10,13 +11,15 @@ import Products from "./pages/Products";
 import Userpage from "./pages/Userpage";
 
 export default function App() {
+  const [loginState, setLoginState] = useState(false);
+
   return (
     <main>
       <ThemeProvider theme={customStyles}>
         <BrowserRouter>
           <Routes>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Homepage />} />
+            <Route element={<Layout loginState={loginState} />}>
+              <Route path="/" element={<Homepage loginState={loginState} />} />
               <Route path="product" element={<ProductPage />} />
               <Route path="products" element={<Products />} />
             </Route>

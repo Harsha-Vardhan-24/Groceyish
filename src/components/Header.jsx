@@ -6,9 +6,11 @@ import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Avatar from "@mui/material/Avatar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ loginState }) {
+  const navigate = useNavigate();
+
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
       right: -3,
@@ -18,6 +20,10 @@ export default function Header() {
       backgroundColor: "#3bb77e",
     },
   }));
+
+  const redirect = () => {
+    navigate("/login");
+  };
 
   return (
     <header className="header-section">
@@ -69,14 +75,20 @@ export default function Header() {
           </StyledBadge>
         </IconButton>
 
-        <Avatar
-          // alt="Surya Teja" -> This needs to enable on user login.
-          style={{
-            backgroundColor: "#3bb77e",
-            fontWeight: "500",
-            fontSize: "1.4em",
-          }}
-        />
+        {!loginState ? (
+          <button onClick={redirect} className="selling-btn">
+            Login
+          </button>
+        ) : (
+          <Avatar
+            // alt="Surya Teja" -> This needs to enable on user login.
+            style={{
+              backgroundColor: "#3bb77e",
+              fontWeight: "500",
+              fontSize: "1.4em",
+            }}
+          />
+        )}
       </div>
     </header>
   );
