@@ -16,7 +16,7 @@ export default function LoginPage({ updateLoginState }) {
         initialValues={{ email: "", username: "", password: "" }}
         onSubmit={async (values) => {
           try {
-            const apiCall = await fetch("http://localhost:5000/authenticate", {
+            const apiCall = await fetch("https://groceyish-backend.onrender.com/authenticate", {
               method: "POST",
               mode: "cors",
               headers: {
