@@ -1,6 +1,7 @@
 # Groceyish - Your Online Grocery Store
 
 ![Groceyish Logo](https://groceyish-grocery.vercel.app/static/media/logo.e0d26e979cbe7e9d1e99.png)
+
 Groceyish is a web-based platform that offers a convenient and seamless shopping experience for groceries. This README file provides an overview of the application, its features, and how to get started.
 
 ## Table of Contents
