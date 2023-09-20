@@ -58,7 +58,7 @@ export default function Homepage(props) {
   useEffect(() => {
     async function getFeaturedProducts() {
       try {
-        const call = await fetch("http://localhost:5000/products/getproducts");
+        const call = await fetch("https://groceyish-backend.onrender.com/products/getproducts");
         const response = await call.json();
         setProducts(response);
       } catch (error) {
