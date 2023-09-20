@@ -14,8 +14,8 @@ export default function App() {
   const userData = localStorage.getItem("userDetails");
   const [loginState, setLoginState] = useState(userData ? true : false);
 
-  function updateLoginState() {
-    setLoginState(true);
+  function updateLoginState(update) {
+    setLoginState(update);
   }
 
   return (
@@ -32,7 +32,7 @@ export default function App() {
               path="login"
               element={<LoginPage updateLoginState={updateLoginState} />}
             />
-            <Route path="user" element={<Userpage />} />
+            <Route path="user" element={<Userpage updateLoginState={updateLoginState} />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

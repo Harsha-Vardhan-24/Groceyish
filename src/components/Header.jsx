@@ -12,8 +12,9 @@ export default function Header({ loginState }) {
   const navigate = useNavigate();
 
   // Here we are getting the username.
+
   const userData = localStorage.getItem("userDetails");
-  const username = JSON.parse(userData);
+  const userDetails = JSON.parse(userData);
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
@@ -92,7 +93,7 @@ export default function Header({ loginState }) {
                 fontSize: "1.4em",
               }}
             >
-              {username.charAt(0)}
+              {userDetails.username.charAt(0).toUpperCase()}
             </Avatar>
           </Link>
         )}

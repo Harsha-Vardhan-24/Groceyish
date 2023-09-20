@@ -230,6 +230,9 @@ input:focus {
   width: 100%;
   background-color: #3bb77e;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .selling-btn:hover,
@@ -317,7 +320,8 @@ footer {
 
 .login-btns {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; 
+  /* prev space-bt */
 }
 
 .login-btns > * {
@@ -538,6 +542,40 @@ footer {
 
 .slick-next:before {
   color: #3bb77e;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+}
+
+.add-products > h1 {
+  font-size: 2em;
+  text-align: center;
+}
+
+.add-products > h1::after {
+  content: "";
+  display: flex;
+  justify-content: center;
+  margin: 0.3em auto 1em;
+  border: 3px solid #3bb77e;
+  border-radius: 10px;
+  width: 50%;
+}
+
+.new-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.type-selector {
+  padding: 1em;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
 }
 
 @media (max-width: 550px) {

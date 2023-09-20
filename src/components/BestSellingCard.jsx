@@ -29,7 +29,7 @@ export default function BestSellingCard() {
         value={54}
       />
       <p className="stock-left">Sold: 20/50</p>
-      <button className="selling-btn">
+      <button className="selling-btn ">
         <LocalMallIcon /> Add
       </button>
     </div>

@@ -14,7 +14,7 @@ export default function FeaturedCard() {
       <div className="featured-price">
         <h1>₹100</h1>
         <h1>₹150</h1>
-        <button>
+        <button className="action-btn">
           <LocalMallIcon /> Add
         </button>
       </div>
