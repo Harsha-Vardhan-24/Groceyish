@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CategoriesCard from "../components/CategoriesCard";
 import FeaturedCard from "../components/FeaturedCard";
 import BestSellingCard from "../components/BestSellingCard";
@@ -10,7 +10,9 @@ import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 
 export default function Homepage(props) {
+  const [products, setProducts] = useState([]);
 
+  console.log(products);
 
   const settings = {
     dots: true,
@@ -53,6 +55,19 @@ export default function Homepage(props) {
     ],
   };
 
+  useEffect(() => {
+    async function getFeaturedProducts() {
+      try {
+        const call = await fetch("http://localhost:5000/products/getproducts");
+        const response = await call.json();
+        setProducts(response);
+      } catch (error) {
+        console.error(`Error fetching products: ${error}`);
+      }
+    }
+    getFeaturedProducts();
+  }, []);
+
   return (
     <main>
       <section className="promotion-area">
@@ -67,10 +82,22 @@ export default function Homepage(props) {
         <h1>Explore categories</h1>
         <div className="card-items">
           <Slider {...settings}>
-            <CategoriesCard />
-            <CategoriesCard />
-            <CategoriesCard />
-            <CategoriesCard />
+            <CategoriesCard
+              name="Fruits"
+              image="https://cdn.pixabay.com/photo/2016/02/24/17/31/fruit-1220367_1280.png"
+            />
+            <CategoriesCard
+              name="Vegetables"
+              image="https://freepngimg.com/thumb/carrot/1-carrot-png-image.png"
+            />
+            <CategoriesCard
+              name="Meat"
+              image="https://freepngimg.com/thumb/meat/35172-8-chicken-meat-image.png"
+            />
+            <CategoriesCard
+              name="Poultry"
+              image="https://freepngimg.com/thumb/egg/15-egg-png-image.png"
+            />
           </Slider>
         </div>
       </section>
@@ -78,10 +105,16 @@ export default function Homepage(props) {
         <h1>Featured products</h1>
         <div className="card-items">
           <Slider {...featuredSettings}>
-            <FeaturedCard />
-            <FeaturedCard />
-            <FeaturedCard />
-            <FeaturedCard />
+            {products.length !== 0 &&
+              products.featuredProducts.map((product) => (
+                <FeaturedCard
+                  key={product._id}
+                  name={product.name}
+                  price={product.price}
+                  image={product.image}
+                  category={product.category}
+                />
+              ))}
           </Slider>
         </div>
       </section>
@@ -89,10 +122,16 @@ export default function Homepage(props) {
         <h1>Daily Best Sells</h1>
         <div className="card-items">
           <Slider {...featuredSettings}>
-            <BestSellingCard />
-            <BestSellingCard />
-            <BestSellingCard />
-            <BestSellingCard />
+            {products.length !== 0 &&
+              products.bestSelling.map((product) => (
+                <BestSellingCard
+                  key={product._id}
+                  name={product.name}
+                  price={product.price}
+                  image={product.image}
+                  category={product.category}
+                />
+              ))}
             <div className="card-item featured-item sign-up-area">
               <h1>10% Off</h1>
               <h2>For new members only</h2>

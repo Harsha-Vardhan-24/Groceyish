@@ -4,7 +4,7 @@ import LocalMallIcon from "@mui/icons-material/LocalMall";
 import staticImg from "../images/static/tomato.png";
 import LinearProgress from "@mui/material/LinearProgress";
 
-export default function BestSellingCard() {
+export default function BestSellingCard({ name, price, image, category }) {
   const progressBarStyle = {
     backgroundColor: "#def9ec !important",
     color: "#3bb77e",
@@ -12,15 +12,15 @@ export default function BestSellingCard() {
 
   return (
     <div className="card-item featured-item bestselling-item">
-      <img src={staticImg} className="featured-img" />
-      <p>Vegetables</p>
-      <h1>Tomatoes</h1>
+      <img src={image !== null ? image : staticImg} className="featured-img" />
+      <p>{category}</p>
+      <h1>{name}</h1>
       <Rating name="read-only" value={4} readOnly />
       <p>
         By <span className="merchant-name">GoodFoods</span>
       </p>
       <div className="bestselling-price">
-        <h1>₹100</h1>
+        <h1>₹{price}</h1>
         <h1>₹150</h1>
       </div>
       <LinearProgress

@@ -1,7 +1,7 @@
 import React from "react";
 import staticImg from "../images/static/tomato.png";
 
-export default function Card() {
+export default function Card({ name, image }) {
   function getBgColor() {
     const colors = [
       "#FEEFEA",
@@ -19,8 +19,12 @@ export default function Card() {
       style={{ backgroundColor: getBgColor() }}
       className="categories-item card-item"
     >
-      <img className="category-img" alt="categoey card" src={staticImg} />
-      <h1>Card Item</h1>
+      <img
+        className="category-img"
+        alt="categoey card"
+        src={image !== null ? image : staticImg}
+      />
+      <h1>{name}</h1>
     </div>
   );
 }

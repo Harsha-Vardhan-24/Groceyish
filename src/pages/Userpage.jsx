@@ -49,9 +49,11 @@ export default function Userpage({ updateLoginState }) {
                 Type: "fruits",
                 Image_url: "",
                 Price: "",
+                Featured: "false",
+                BestSelling: "false",
               }}
               onSubmit={async (values, { resetForm }) => {
-                const call = await fetch("https://groceyish-backend.onrender.com/products/add", {
+                const call = await fetch("http://localhost:5000/products/add", {
                   method: "POST",
                   mode: "cors",
                   headers: {
@@ -62,7 +64,7 @@ export default function Userpage({ updateLoginState }) {
                 const response = await call.json();
                 if (response.message === "Product saved successfully") {
                   resetForm();
-                  toast('Product saved', {
+                  toast("Product saved", {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -71,9 +73,9 @@ export default function Userpage({ updateLoginState }) {
                     draggable: true,
                     progress: undefined,
                     theme: "light",
-                    });
+                  });
                 } else {
-                  toast('Product not saved', {
+                  toast("Product not saved", {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -82,7 +84,7 @@ export default function Userpage({ updateLoginState }) {
                     draggable: true,
                     progress: failed,
                     theme: "light",
-                    });
+                  });
                 }
               }}
             >
@@ -112,24 +114,43 @@ export default function Userpage({ updateLoginState }) {
                     placeholder="Pricing"
                     required
                   />
+                  <h1>Featured Product</h1>
+                  <Field
+                    className="type-selector"
+                    as="select"
+                    name="Featured"
+                    required
+                  >
+                    <option value="false">No</option>
+                    <option value="true">Yes</option>
+                  </Field>
+                  <h1>Best Selling Product</h1>
+                  <Field
+                    className="type-selector"
+                    as="select"
+                    name="BestSelling"
+                    required
+                  >
+                    <option value="false">No</option>
+                    <option value="true">Yes</option>
+                  </Field>
                   <button type="submit">Submit</button>
                 </Form>
               }
             </Formik>
           </div>
           <ToastContainer
-position="top-center"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="colored"
-/>
-
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
         </section>
       ) : (
         <div className="past-orders">
