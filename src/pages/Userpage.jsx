@@ -51,7 +51,7 @@ export default function Userpage({ updateLoginState }) {
                 Price: "",
               }}
               onSubmit={async (values, { resetForm }) => {
-                const call = await fetch("http://localhost:5000/products/add", {
+                const call = await fetch("https://groceyish-backend.onrender.com/products/add", {
                   method: "POST",
                   mode: "cors",
                   headers: {
