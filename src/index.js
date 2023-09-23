@@ -5,8 +5,4 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import { ThemeProvider } from "@mui/material";
 
-createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+createRoot(document.getElementById("root")).render(<App />);

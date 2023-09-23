@@ -3,11 +3,11 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 
-export default function Layout(props) {
+export default function Layout({ loginState, cartItems }) {
   return (
     <>
-      <Header loginState={props.loginState} />
-      <Outlet loginState={props.loginState} />
+      <Header loginState={loginState} cartItems={cartItems} />
+      <Outlet loginState={loginState} />
       <Footer />
     </>
   );

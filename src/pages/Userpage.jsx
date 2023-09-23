@@ -5,7 +5,7 @@ import { Field, Form, Formik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
-export default function Userpage({ updateLoginState }) {
+export default function Userpage({ updateLoginState, updateCart }) {
   const userData = localStorage.getItem("userDetails");
   const userDetails = JSON.parse(userData);
 
@@ -14,6 +14,7 @@ export default function Userpage({ updateLoginState }) {
   const logout = () => {
     updateLoginState(false);
     localStorage.clear();
+    updateCart();
     navigate("/");
   };
 
@@ -53,7 +54,7 @@ export default function Userpage({ updateLoginState }) {
                 BestSelling: "false",
               }}
               onSubmit={async (values, { resetForm }) => {
-                const call = await fetch("https://groceyish-backend.onrender.com/products/add", {
+                const call = await fetch("http://localhost:5000/products/add", {
                   method: "POST",
                   mode: "cors",
                   headers: {

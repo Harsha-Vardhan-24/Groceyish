@@ -8,7 +8,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Avatar from "@mui/material/Avatar";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Header({ loginState }) {
+export default function Header({ loginState, cartItems }) {
   const navigate = useNavigate();
 
   // Here we are getting the username.
@@ -75,8 +75,10 @@ export default function Header({ loginState }) {
             textAlign: "center",
           }}
         >
-          <StyledBadge badgeContent={1} color="secondary">
-            <ShoppingCartIcon style={{ fontSize: "1.5em" }} />
+          <StyledBadge badgeContent={cartItems} color="secondary">
+            <Link to="/cart">
+              <ShoppingCartIcon style={{ fontSize: "1.5em" }} />
+            </Link>
           </StyledBadge>
         </IconButton>
 

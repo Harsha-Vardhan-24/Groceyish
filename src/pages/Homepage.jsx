@@ -3,16 +3,20 @@ import CategoriesCard from "../components/CategoriesCard";
 import FeaturedCard from "../components/FeaturedCard";
 import BestSellingCard from "../components/BestSellingCard";
 import AllCards from "../components/AllCards";
+import Cart from "../pages/Cart";
 import Slider from "react-slick";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import SettingsBackupRestoreIcon from "@mui/icons-material/SettingsBackupRestore";
 import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import { Link } from "react-router-dom";
 
 export default function Homepage(props) {
   const [products, setProducts] = useState([]);
-
-  console.log(products);
+  // Get user details
+  const userData = localStorage.getItem("userDetails");
+  const userDetails = JSON.parse(userData);
+  // console.log(products);
 
   const settings = {
     dots: true,
@@ -58,7 +62,7 @@ export default function Homepage(props) {
   useEffect(() => {
     async function getFeaturedProducts() {
       try {
-        const call = await fetch("https://groceyish-backend.onrender.com/products/getproducts");
+        const call = await fetch("http://localhost:5000/products/getproducts");
         const response = await call.json();
         setProducts(response);
       } catch (error) {
@@ -109,6 +113,8 @@ export default function Homepage(props) {
               products.featuredProducts.map((product) => (
                 <FeaturedCard
                   key={product._id}
+                  product_id={product._id}
+                  addItems={props.addItems}
                   name={product.name}
                   price={product.price}
                   image={product.image}
@@ -126,6 +132,8 @@ export default function Homepage(props) {
               products.bestSelling.map((product) => (
                 <BestSellingCard
                   key={product._id}
+                  product_id={product._id}
+                  addItems={props.addItems}
                   name={product.name}
                   price={product.price}
                   image={product.image}
@@ -181,7 +189,9 @@ export default function Homepage(props) {
         </div>
       </section>
       <div className="cart">
-        <ShoppingBagIcon className="cart-icon" />
+        <Link to="/cart">
+          <ShoppingBagIcon className="cart-icon" />
+        </Link>
       </div>
     </main>
   );

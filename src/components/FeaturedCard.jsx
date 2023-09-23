@@ -3,8 +3,18 @@ import Rating from "@mui/material/Rating";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import staticImg from "../images/static/tomato.png";
 
-export default function FeaturedCard({ name, price, image, category }) {
-  console.log(name, price, image, category);
+export default function FeaturedCard({
+  name,
+  price,
+  image,
+  category,
+  product_id,
+  addItems,
+}) {
+  function showProduct(product_id) {
+    addItems(product_id);
+  }
+
   return (
     <div className="card-item featured-item">
       <img src={image !== null ? image : staticImg} className="featured-img" />
@@ -16,8 +26,13 @@ export default function FeaturedCard({ name, price, image, category }) {
       </p>
       <div className="featured-price">
         <h1>₹{price}</h1>
-        <h1>₹150</h1>
-        <button className="action-btn">
+        <h1>₹{price + 10}</h1>
+        <button
+          className="action-btn"
+          onClick={() => {
+            showProduct(product_id);
+          }}
+        >
           <LocalMallIcon /> Add
         </button>
       </div>
