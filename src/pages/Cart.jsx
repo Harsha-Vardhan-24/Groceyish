@@ -12,7 +12,7 @@ export default function Cart({ cartItems }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const call = await fetch("http://localhost:5000/products/getcartdata", {
+        const call = await fetch("https://groceyish-backend.onrender.com/products/getcartdata", {
           method: "POST",
           body: JSON.stringify({ cartItems, email: userEmail.email }),
           headers: {
