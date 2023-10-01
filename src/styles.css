@@ -621,6 +621,18 @@ footer {
 }
 
 
+.remove-cart-btn {
+  color: #3bb77e;
+}
+
+
+.remove-cart-btn:hover,
+.remove-cart-btn:active,
+.remove-cart-btn:focus {
+  color: #253d4e;
+  text-decoration: underline;
+}
+
 
 /* Mobile Queries */
 

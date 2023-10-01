@@ -24,11 +24,10 @@ export default function App() {
 
   function addItems(item_id) {
     setCart((prevState) => [...prevState, item_id]);
-    sessionStorage.setItem("cartItems", cart);
   }
 
   function clearCart() {
-    setCart([])
+    setCart([]);
   }
 
   return (
@@ -57,7 +56,12 @@ export default function App() {
             />
             <Route
               path="user"
-              element={<Userpage updateLoginState={updateLoginState} updateCart={clearCart} />}
+              element={
+                <Userpage
+                  updateLoginState={updateLoginState}
+                  updateCart={clearCart}
+                />
+              }
             />
           </Routes>
         </BrowserRouter>
