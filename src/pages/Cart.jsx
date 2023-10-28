@@ -10,7 +10,7 @@ export default function Cart({ cartItems }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const call = await fetch("http://localhost:5000/products/getcartdata", {
+        const call = await fetch("https://groceyish-backend.onrender.com/products/getcartdata", {
           method: "POST",
           body: JSON.stringify({ cartItems, email: userEmail.email }),
           headers: {
@@ -33,7 +33,7 @@ export default function Cart({ cartItems }) {
   const updatePrice = cartItemsData.map((item) => (totalPrice += item.price));
 
   async function payment() {
-    const call = await fetch("http://localhost:5000/payment/create-payment", {
+    const call = await fetch("https://groceyish-backend.onrender.com/payment/create-payment", {
       method: "POST",
       body: JSON.stringify({ totalPrice }),
       headers: {
